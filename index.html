@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Модерн — салон краси</title>
-  <meta name="description" content="Салон краси «Модерн». Стрижка, окрашивание, сложное окрашивание та манікюр. Запис через WhatsApp." />
+  <meta name="description" content="Салон краси «Модерн». Стрижка, фарбування, складне фарбування та манікюр. Запис через WhatsApp." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -20,6 +20,7 @@
 
   <nav class="nav">
     <a href="#services">Послуги</a>
+    <a href="#gallery">Роботи</a>
     <a href="#masters">Майстри</a>
     <a href="#prices">Ціни</a>
     <a href="#contacts">Контакти</a>
@@ -29,6 +30,7 @@
 </header>
 
 <main>
+
   <section class="hero">
     <div class="hero-content">
       <p class="label">Black · White · Gold</p>
@@ -38,7 +40,8 @@
       </p>
 
       <div class="actions">
-        <a class="btn gold" target="_blank" href="https://wa.me/380631008331?text=Доброго%20дня!%20Бажаю%20записатися%20до%20салону%20краси%20«Модерн»">
+        <a class="btn gold" target="_blank"
+           href="https://wa.me/380631008331?text=Доброго%20дня!%20Бажаю%20записатися%20до%20салону%20краси%20«Модерн»">
           Записатися
         </a>
         <a class="btn outline" href="tel:+380631008331">Зателефонувати</a>
@@ -46,7 +49,19 @@
     </div>
 
     <div class="hero-card">
-      <span>Стрижки · Фарбування · Манікюр</span>
+      <p class="label">РЕЖИМ РОБОТИ</p>
+      <h3>Ми працюємо</h3>
+
+      <div class="hours-row">
+        <span>Пн – Сб</span>
+        <strong>09:00 – 18:00</strong>
+      </div>
+
+      <div class="hours-row">
+        <span>Нд</span>
+        <strong>09:00 – 16:00</strong>
+      </div>
+
     </div>
   </section>
 
@@ -80,24 +95,21 @@
       </div>
     </div>
   </section>
-<div style="margin-top:40px;">
-    <iframe
-        src="https://maps.google.com/maps?q=48.65932,33.11983&z=18&output=embed"
-        width="100%"
-        height="450"
-        style="border:0;border-radius:20px;"
-        loading="lazy"
-        allowfullscreen>
-    </iframe>
-</div>
-<div style="text-align:center; margin-top:20px;">
-    <a
-        href="https://www.google.com/maps/dir/?api=1&destination=48.65932,33.11983"
-        target="_blank"
-        class="btn gold">
-        📍 Прокласти маршрут
-    </a>
-</div>
+
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2>Наші роботи</h2>
+
+      <div class="gallery-grid">
+        <img src="images/work1.jpeg" alt="Робота 1" onclick="openImage(this.src)">
+        <img src="images/work2.jpeg" alt="Робота 2" onclick="openImage(this.src)">
+        <img src="images/work3.jpeg" alt="Робота 3" onclick="openImage(this.src)">
+        <img src="images/work4.jpeg" alt="Робота 4" onclick="openImage(this.src)">
+        <img src="images/work5.jpeg" alt="Робота 5" onclick="openImage(this.src)">
+        <img src="images/work6.jpeg" alt="Робота 6" onclick="openImage(this.src)">
+      </div>
+    </div>
+  </section>
 
   <section id="masters" class="section dark">
     <p class="label center">Майстри</p>
@@ -152,26 +164,123 @@
     </div>
   </section>
 
+  <section class="map-section" id="map">
+    <h2>Як нас знайти</h2>
+
+    <div class="map-frame">
+      <iframe
+        src="https://maps.google.com/maps?q=48.65932,33.11983&z=18&output=embed"
+        width="100%"
+        height="450"
+        style="border:0;"
+        loading="lazy"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <div class="map-actions">
+      <a
+        href="https://www.google.com/maps/dir/?api=1&destination=48.65932,33.11983"
+        target="_blank"
+        class="btn gold">
+        📍 Прокласти маршрут
+      </a>
+    </div>
+  </section>
+
   <section id="contacts" class="section contacts">
     <div>
       <p class="label">Контакти</p>
       <h2>Запишіться на зручний час</h2>
-      <p><strong>Телефон:</strong> <a href="tel:+380631008331">+380 63 100 83 31</a></p>
+      <p class="phone-box">
+        📞 <a href="tel:+380631008331">+380 63 100 83 31</a>
+      </p>
     </div>
 
     <div class="contact-card">
       <h3>Швидкий запис</h3>
-      <p>Для швидкого зв`язку натиснiть нижче.</p>
-      <a class="btn gold full" target="_blank" href="https://wa.me/380631008331?text=Доброго%20дня!%20Бажаю%20записатися%20до%20салону%20краси%20«Модерн»">
+      <p>Для швидкого зв'язку натисніть нижче.</p>
+      <a class="btn gold full" target="_blank"
+         href="https://wa.me/380631008331?text=Доброго%20дня!%20Бажаю%20записатися%20до%20салону%20краси%20«Модерн»">
         Записатися
       </a>
     </div>
   </section>
+
 </main>
 
 <footer>
   <p>© 2026 Салон краси «Модерн»</p>
 </footer>
 
+<div class="floating-buttons">
+  <a href="https://wa.me/380631008331?text=Доброго%20дня!%20Бажаю%20записатися%20до%20салону%20краси%20«Модерн»"
+     target="_blank"
+     class="whatsapp">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp">
+  </a>
+
+  <a href="https://www.instagram.com/modern_beauty_bar?igsh=eHpmZGVyNXk5dWdy"
+     target="_blank"
+     class="instagram">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
+  </a>
+</div>
+
+<div id="lightbox" onclick="closeImage()">
+  <img id="lightbox-img" alt="Фото роботи">
+</div>
+
+<script>
+function openImage(src){
+  document.getElementById("lightbox").style.display = "flex";
+  document.getElementById("lightbox-img").src = src;
+}
+
+function closeImage(){
+  document.getElementById("lightbox").style.display = "none";
+}
+</script>
+<button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+<script>
+const revealElements = document.querySelectorAll(
+  ".section, .gallery, .map-section, .card, .master, .price-box, .contact-card"
+);
+
+revealElements.forEach(el => el.classList.add("reveal"));
+
+function revealOnScroll(){
+  revealElements.forEach(el => {
+    const elementTop = el.getBoundingClientRect().top;
+    const elementBottom = el.getBoundingClientRect().bottom;
+    const windowHeight = window.innerHeight;
+
+    if(elementTop < windowHeight - 80 && elementBottom > 80){
+      el.classList.add("active");
+    } else {
+      el.classList.remove("active");
+    }
+  });
+
+  const topButton = document.querySelector(".back-to-top");
+
+  if(window.scrollY > 500){
+    topButton.style.display = "flex";
+  } else {
+    topButton.style.display = "none";
+  }
+}
+
+function scrollToTop(){
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+</script>
 </body>
 </html>
