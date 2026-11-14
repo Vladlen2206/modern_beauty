@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Модерн — клієнтська база</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+<!-- Вхід -->
+<section id="login-view" class="login" hidden>
+  <form id="login-form" class="login-card">
+    <div class="logo"><span>М</span><div><strong>Модерн</strong><small>клієнтська база</small></div></div>
+    <label>Email<input type="email" name="email" autocomplete="username" required /></label>
+    <label>Пароль<input type="password" name="password" autocomplete="current-password" required /></label>
+    <button class="btn gold full" type="submit">Увійти</button>
+    <p class="form-error" id="login-error"></p>
+  </form>
+</section>
+
+<!-- Налаштування не завершено -->
+<section id="setup-view" class="login" hidden>
+  <div class="login-card">
+    <div class="logo"><span>М</span><div><strong>Модерн</strong><small>клієнтська база</small></div></div>
+    <p>Базу ще не підключено. Впишіть адресу проєкту Supabase і ключ у файл <code>admin/config.js</code>.</p>
+  </div>
+</section>
+
+<!-- Робочий простір -->
+<div id="app-view" hidden>
+  <header class="header">
+    <div class="logo"><span>М</span><div><strong>Модерн</strong><small>клієнтська база</small></div></div>
+    <nav class="tabs" id="tabs">
+      <button data-tab="clients" class="active">Клієнти</button>
+      <button data-tab="stats">Статистика</button>
+      <button data-tab="staff" data-admin>Майстри</button>
+      <button data-tab="services" data-admin>Послуги</button>
+    </nav>
+    <div class="who">
+      <span id="who-name"></span>
+      <button class="link" id="logout">Вийти</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Клієнти -->
+    <section class="tab" id="tab-clients">
+      <div class="toolbar">
+        <input type="search" id="client-search" placeholder="Пошук за ім'ям або телефоном" />
+        <button class="btn gold" id="new-client">+ Новий клієнт</button>
+      </div>
+      <div class="table-wrap">
+        <table class="table" id="clients-table">
+          <thead><tr>
+            <th data-sort="full_name">Клієнт</th>
+            <th>Телефон</th>
+            <th class="hide-sm">Майстер</th>
+            <th data-sort="last">Останній візит</th>
+            <th data-sort="count" class="num hide-sm">Візитів</th>
+            <th data-sort="total" class="num">Сума</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="empty" id="clients-empty" hidden>Клієнтів поки немає.</p>
+    </section>
+
+    <!-- Статистика -->
+    <section class="tab" id="tab-stats" hidden>
+      <div class="toolbar">
+        <div class="seg" id="period">
+          <button data-p="today">Сьогодні</button>
+          <button data-p="7">7 днів</button>
+          <button data-p="month" class="active">Цей місяць</button>
+          <button data-p="90">3 місяці</button>
+          <button data-p="year">Рік</button>
+        </div>
+        <label class="inline">з <input type="date" id="from" /></label>
+        <label class="inline">по <input type="date" id="to" /></label>
+      </div>
+      <div class="tiles" id="tiles"></div>
+      <div class="panel">
+        <h3 id="bars-title">Виручка по днях</h3>
+        <div class="bars" id="bars"></div>
+        <div class="bar-axis" id="bar-axis"></div>
+      </div>
+      <div class="two">
+        <div class="panel" id="by-master-panel"><h3>По майстрах</h3><div id="by-master"></div></div>
+        <div class="panel"><h3>По послугах</h3><div id="by-service"></div></div>
+      </div>
+      <div class="two">
+        <div class="panel"><h3>Найкращі клієнти за період</h3><div id="top-clients"></div></div>
+        <div class="panel"><h3>Давно не були (понад 60 днів)</h3><div id="lost-clients"></div></div>
+      </div>
+    </section>
+
+    <!-- Майстри -->
+    <section class="tab" id="tab-staff" hidden>
+      <p class="hint">Щоб додати працівника: Supabase → Authentication → Users → <b>Add user</b> (email і пароль).
+        Він з'явиться тут як майстер — впишіть ім'я. Вимкнений працівник не може увійти в базу.</p>
+      <div class="table-wrap">
+        <table class="table" id="staff-table">
+          <thead><tr><th>Ім'я</th><th>Email</th><th>Роль</th><th>Доступ</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Послуги -->
+    <section class="tab" id="tab-services" hidden>
+      <div class="table-wrap">
+        <table class="table" id="services-table">
+          <thead><tr><th>Послуга</th><th class="num">Ціна від, грн</th><th>Активна</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <form class="toolbar" id="service-form">
+        <input name="name" placeholder="Нова послуга" required />
+        <input name="price_from" type="number" min="0" step="1" placeholder="Ціна від" />
+        <button class="btn gold" type="submit">Додати</button>
+      </form>
+    </section>
+  </main>
+</div>
+
+<!-- Модальне вікно -->
+<div class="modal" id="modal" hidden>
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close" aria-label="Закрити">×</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
